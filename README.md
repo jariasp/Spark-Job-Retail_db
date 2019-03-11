@@ -1,5 +1,3 @@
-# Spark-Job-Retail_db
-Creacion de modelo utilizando Apache-Spark y MySql
 # Retail_db, Apache-Spark
 
 Creacion de modelo en estrella utilizando Apache-Spark y MySql.
