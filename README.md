@@ -26,7 +26,8 @@ pro.setProperty("password","cloudera")
 
 ## 3. Arquitectura a utilizar
 
-![alt text](recursos/Diagrama_Estrella.png "Modelo de Estrella")
+![alt text](recursos/Arquitectura.png "Aquitectura Big Data")
+
 
 ## 4. Modelo estrella 
 
@@ -41,7 +42,7 @@ pro.setProperty("password","cloudera")
 
 ### 4.1 Modelo Estrella
 
-![alt text](recursos/Arquitectura.png "Aquitectura Big Data")
+![alt text](recursos/Diagrama_Estrella.png "Modelo de Estrella")
 
 ## 5. Realizar la conexión de Mysql a Spark para crear las tablas en *.parquet.
 
