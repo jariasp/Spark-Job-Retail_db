@@ -26,7 +26,7 @@ pro.setProperty("password","cloudera")
 
 ## 3. Arquitectura a utilizar
 
-![alt text](recursos/Arquitectura.png "Aquitectura Big Data")
+![alt text](recursos/Diagrama_Estrella.png "Modelo de Estrella")
 
 ## 4. Modelo estrella 
 
