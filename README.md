@@ -20,11 +20,11 @@ Apartir de la base de datos retail_db contenida en mysql la cual accesamos por m
 
 # 1. Modelo Entidad Relación de la base de datos Mysql
 
-![alt text](ModeloER.png "Modelo -ER Retail_db")
+![alt text](recursos/ModeloER.png "Modelo -ER Retail_db")
 
 ## 2. Arquitectura a utilizar
 
-![alt text](9d70ce_4d76915ef1a84e26bfea03cee347de7a~mv2.png "Aquitectura Big Data")
+![alt text](recursos/ModeloER.png "Aquitectura Big Data")
 
 ## 3. Realizar la conexión de Mysql a Spark para crear las tablas en *.parquet.
 
