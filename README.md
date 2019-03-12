@@ -1,13 +1,10 @@
-#Data warehouse en Spark
+# Data warehouse en Spark
 
 Apartir de la base de datos retail_db contenida en mysql la cual accesamos por medio de una maquina virtual de cloudera crear un data warehouse en spark:
 
 ## 1. Proceso de cargar de tablas desde Mysql a archivos parquet en Hadoop
 
-### 1.1 Realizar la conexión de Mysql a Spark para crear las tablas en *.parquet.
-
-Utilizando la configuracion entregada por cloudera, la conexión a la base de datos seria la siguiente:
-
+### 1.1 Conectando Apache-Spark a Mysql
 ```scala
 val sqlContext = new org.apache.spark.sql.SQLContext(sc)
 var url="jdbc:mysql://quickstart:3306/retail_db"
@@ -15,10 +12,17 @@ val pro= new java.util.Properties
 pro.setProperty("user","root")
 pro.setProperty("password","cloudera")
 ```
-
+### 1.2 Lectura de tablas de MySql desde Apache-Spark y escritura de archivos parquet en Hadoop
+```scala
+val sqlContext = new org.apache.spark.sql.SQLContext(sc)
+var url="jdbc:mysql://quickstart:3306/retail_db"
+val pro= new java.util.Properties
+pro.setProperty("user","root")
+pro.setProperty("password","cloudera")
+```
 ## 2. Modelo Entidad Relación de la base de datos Mysql
 
-![alt text](recursos/ModeloER.png "Modelo -ER Retail_db")
+![alt text](recursos/ModeloER.png "Modelo-ER Retail_db")
 
 ## 3. Arquitectura a utilizar
 
