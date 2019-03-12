@@ -14,11 +14,24 @@ pro.setProperty("password","cloudera")
 ```
 ### 1.2 Lectura de tablas de MySql desde Apache-Spark y escritura de archivos parquet en Hadoop
 ```scala
-val sqlContext = new org.apache.spark.sql.SQLContext(sc)
-var url="jdbc:mysql://quickstart:3306/retail_db"
-val pro= new java.util.Properties
-pro.setProperty("user","root")
-pro.setProperty("password","cloudera")
+val departmentdf = sqlContext.read.jdbc(url,"departments",pro)
+departmentdf.write.mode("overwrite").format("parquet").save("hdfs:///datawh/department.parquet")
+
+val categoriesdf = sqlContext.read.jdbc(url,"categories",pro)
+categoriesdf.write.mode("overwrite").format("parquet").save("hdfs:///datawh/categories.parquet")
+
+val customersdf = sqlContext.read.jdbc(url,"customers",pro)
+customersdf.write.mode("overwrite").format("parquet").save("hdfs:///datawh/customers.parquet")
+
+val order_itemsdf = sqlContext.read.jdbc(url,"order_items",pro)
+order_itemsdf.write.mode("overwrite").format("parquet").save("hdfs:///datawh/order_items.parquet")
+
+val ordersdf = sqlContext.read.jdbc(url,"orders",pro)
+ordersdf.write.mode("overwrite").format("parquet").save("hdfs:///datawh/orders.parquet")
+
+val productsdf = sqlContext.read.jdbc(url,"products",pro)
+productsdf.write.mode("overwrite").format("parquet").save("hdfs:///datawh/products.parquet")
+
 ```
 ## 2. Modelo Entidad Relación de la base de datos Mysql
 
