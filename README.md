@@ -116,13 +116,13 @@ val tiempo1 = sqlContext.sql("select concat(annio,mes,dia)as skfecha, dia,mes,an
 tiempo1.write.parquet("/datawh/dim_tiempo.parquet")
 ```
 ### 9.2 Dimensiones de department, Customer, category,orders_item, orders y city.
-
+```scala
 val dim_departamento = sqlContext.sql("select * from departamento")
 val dim_cliente = sqlContext.sql("select * from parquetcliente")
 val dim_categoria = sqlContext.sql("select * from parquetcliente")
 val dim_order_item = sqlContext.sql("select * from parquetcliente")
 val dim_orders = sqlContext.sql("select * from parquetcliente")
-
+```
 
 ## 8. Compilación de codigo en IDE para obtener el *.JAR
 
