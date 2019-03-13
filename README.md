@@ -33,6 +33,28 @@ val productsdf = sqlContext.read.jdbc(url,"products",pro)
 productsdf.write.mode("overwrite").format("parquet").save("hdfs:///datawh/products.parquet")
 
 ```
+
+### 1.3 Lectura de los archivos *.parquet 
+```scala
+val parquetdepar = sqlContext.read.parquet("/datawh/department.parquet")
+val parquetcliente = sqlContext.read.parquet("/datawh/customers.parquet")
+val parquetcategoria = sqlContext.read.parquet("/datawh/categories.parquet")
+val parquetproducto = sqlContext.read.parquet("/datawh/products.parquet")
+val parquetorder_items = sqlContext.read.parquet("/datawh/order_items.parquet")
+val parquetorders = sqlContext.read.parquet("/datawh/orders.parquet")
+```
+
+### 1.4 Lectura y registro de tabla temporal a partir de un datframe
+```scala
+parquetdepar.registerTempTable("departamento")
+parquetcliente.registerTempTable("cliente")
+parquetproducto.registerTempTable("producto")
+parquetcategoria.registerTempTable("categoria")
+parquetorder_items.registerTempTable("ordenItems")
+parquetorders.registerTempTable("ordenes")
+
+```
+
 ## 2. Modelo Entidad Relación de la base de datos Mysql
 
 ![alt text](recursos/ModeloER.png "Modelo-ER Retail_db")
