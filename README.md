@@ -133,7 +133,15 @@ var nodoTiempo = dataFrame
 ```
 ![alt text](recursos/Dimensión_Tiempo.jpg "Dimensión del tiempo")
 
-### 9.2 Dimensiones de department, Customer, category,orders_item, orders y city.
+### 9.4 Dimensión de Customers
+
+#### La dimensión contiene campos calculados de mail y passwork.
+
+##### Mail esta creado lname@upb.{city}.com
+
+##### Passwork es un número aleatorio entre 0 y 100. 
+
+### 9.3 Dimensiones de department, Customer, category,orders_item, orders y city.
 ```scala
 val dim_departamento = sqlContext.sql("select * from departamento")
 val dim_cliente = sqlContext.sql("select * from parquetcliente")
