@@ -96,6 +96,28 @@ Group by
 oi.order_item_id,c.customer_id,p.product_id,ca.category_id,d.department_id, ci.city_id")
 ```
 
-## 6. Compilación de codigo en IDE para obtener el *.JAR
+## 9. Se crean las dimensiones
+
+```scala
+val parquetorders = sqlContext.read.parquet("/datawh/orders.parquet")
+parquetorders.registerTempTable("ordenes")
+val fechas = sqlContext.sql("select distinct order_date from ordenes")
+
+fechas.registerTempTable("fechas")
+
+val tiempo = fechas.withColumn("dia",dayofmonth(col("order_date"))).withColumn("mes",month(col("order_date"))).withColumn("annio",year(col("order_date")))
+
+tiempo.registerTempTable("tiempo")
+
+val tiempo1 = sqlContext.sql("select concat(annio,mes,dia)as skfecha, dia,mes,annio, quarter(order_date) as trimestre, round((quarter(order_date))/2) as semestre from tiempo")
+
+tiempo1.write.parquet("/datawh/dim_tiempo.parquet")
+```
+
+### 9.1 Dimesión de Tiempo
+
+
+
+## 8. Compilación de codigo en IDE para obtener el *.JAR
 
 
