@@ -83,4 +83,9 @@ Creacion de modelo en estrella utilizando Apache-Spark y MySql.
 
 ![alt text](recursos/Diagrama_Estrella.png "Modelo de Estrella")
 
-## 5. Realizar la conexión de Mysql a Spark para crear las tablas en *.parquet.
+## 5. Creción del tabla de Hechos
+
+```scala
+val dim_cliente = sqlContext.sql("select * from parquetcliente")
+```
+
