@@ -85,7 +85,14 @@ Creacion de modelo en estrella utilizando Apache-Spark y MySql.
 
 ## 5. Creción del tabla de Hechos
 
-```scala
-val dim_cliente = sqlContext.sql("select * from parquetcliente")
+```sql
+val dim_cliente = sqlContext.sql("select 
+oi.order_item_id,c.customer_id,p.product_id,ca.category_id,d.department_id, o.order_date as fecha_Carga,sum(oi.order_item_subtotal) as Val_Ventas,sum(order_item_quantity) as Cant_Prod
+from   order_items oi, orders o, customers c, products p, categories ca, departments d 
+ where o.order_id = oi.order_item_order_id and  o.order_customer_id = c.customer_id and
+ oi.order_item_product_id = p.product_id and  ca.category_id = p.product_category_id and
+ ca.category_department_id = d.department_id
+Group by 
+oi.order_item_id,c.customer_id,p.product_id,ca.category_id,d.department_id")
 ```
 
