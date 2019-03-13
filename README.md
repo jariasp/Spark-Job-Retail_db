@@ -122,8 +122,9 @@ val dim_cliente = sqlContext.sql("select * from parquetcliente")
 val dim_categoria = sqlContext.sql("select * from parquetcliente")
 val dim_order_item = sqlContext.sql("select * from parquetcliente")
 val dim_orders = sqlContext.sql("select * from parquetcliente")
+val dim_cliente = cliente.withColumn("password",(Seq.fill{Math.abs(Random.nextInt % 100L)}))
 ```
 
-## 8. Compilación de codigo en IDE para obtener el *.JAR
+## 10. Compilación de codigo en IDE para obtener el *.JAR
 
 
