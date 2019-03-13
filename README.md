@@ -96,3 +96,6 @@ Group by
 oi.order_item_id,c.customer_id,p.product_id,ca.category_id,d.department_id, ci.city_id")
 ```
 
+## 6. Compilación de codigo en IDE para obtener el *.JAR
+
+
