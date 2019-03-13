@@ -45,7 +45,7 @@ val parquetorder_items = sqlContext.read.parquet("/datawh/order_items.parquet")
 val parquetorders = sqlContext.read.parquet("/datawh/orders.parquet")
 ```
 
-### 1.4 Lectura y registro de tabla temporal a partir de un datframe
+### 1.4 Lectura y registro de tabla temporal a partir de un dataframe
 
 ```scala
 parquetdepar.registerTempTable("departamento")
