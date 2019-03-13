@@ -98,7 +98,9 @@ oi.order_item_id,c.customer_id,p.product_id,ca.category_id,d.department_id, ci.c
 
 ## 9. Se crean las dimensiones
 
-### 9.1 Dimesión de Tiempo
+### 9.1 Dimesión de Tiempo: 
+
+#### Esta se puede realizar de formas utilizando las funcion withcolumn junto con las funciones de tiempo.
 
 ```scala
 val parquetorders = sqlContext.read.parquet("/datawh/orders.parquet")
@@ -115,6 +117,19 @@ val tiempo1 = sqlContext.sql("select concat(annio,mes,dia)as skfecha, dia,mes,an
 
 tiempo1.write.parquet("/datawh/dim_tiempo.parquet")
 ```
+
+```scala
+var nodoTiempo = dataFrame
+        .selectExpr("order_date")
+        .distinct()
+        .withColumn("day",dayofmonth(col("order_date")))
+        .withColumn("month",month(col("order_date")))
+        .withColumn("year",year(col("order_date")))      
+        .withColumn("trimester", quarter(col("order_date")))
+        .withColumn("semester", round(quarter(col("order_date"))/2))
+```
+
+
 ### 9.2 Dimensiones de department, Customer, category,orders_item, orders y city.
 ```scala
 val dim_departamento = sqlContext.sql("select * from departamento")
