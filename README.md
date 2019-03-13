@@ -131,7 +131,7 @@ var nodoTiempo = dataFrame
         .withColumn("trimester", quarter(col("order_date")))
         .withColumn("semester", round(quarter(col("order_date"))/2))
 ```
-
+![alt text](recursos/Dimensión_Tiempo.jpg "Dimensión del tiempo")
 
 ### 9.2 Dimensiones de department, Customer, category,orders_item, orders y city.
 ```scala
