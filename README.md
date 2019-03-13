@@ -98,6 +98,8 @@ oi.order_item_id,c.customer_id,p.product_id,ca.category_id,d.department_id, ci.c
 
 ## 9. Se crean las dimensiones
 
+### 9.1 Dimesión de Tiempo
+
 ```scala
 val parquetorders = sqlContext.read.parquet("/datawh/orders.parquet")
 parquetorders.registerTempTable("ordenes")
@@ -113,10 +115,6 @@ val tiempo1 = sqlContext.sql("select concat(annio,mes,dia)as skfecha, dia,mes,an
 
 tiempo1.write.parquet("/datawh/dim_tiempo.parquet")
 ```
-
-### 9.1 Dimesión de Tiempo
-
-
 
 ## 8. Compilación de codigo en IDE para obtener el *.JAR
 
