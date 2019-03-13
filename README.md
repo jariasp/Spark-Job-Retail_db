@@ -96,6 +96,9 @@ Group by
 oi.order_item_id,c.customer_id,p.product_id,ca.category_id,d.department_id, ci.city_id")
 ```
 
+![alt text](recursos/Tabla_Hechos(Ventas).jpg "Tabla de Hechos")
+
+
 ## 9. Se crean las dimensiones
 
 ### 9.1 Dimesión de Tiempo: 
