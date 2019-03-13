@@ -68,6 +68,8 @@ parquetorders.registerTempTable("ordenes")
 
 ## 4. Modelo estrella 
 
+Creacion de modelo en estrella utilizando Apache-Spark y MySql.
+
 * La tabla de hechos la tabla de hechos tiene la cantidad de productos vendidos, el valor de las ventas y fecha de carga de los registros. Las dimensiones del esquema en estrella deben ser las siguientes: 
 * Cliente: Esta dimensión debe tener una columna que almacena el correo electrónico del cliente. La estructura de la columna es fname. lname@upb.{city}.com. Adicionalmente construya una columna de password cuyo valor es un número aleatorio entre 0 y 100. 
 * Estado del pago
@@ -77,15 +79,8 @@ parquetorders.registerTempTable("ordenes")
 * Ciudad
 * Tiempo: Esta dimensión debe tener una columna que muestre el dıa de la semana, el d ́ıa del mes, el mes, el trimestre y el sementre en que se realizó la compra. 
 
-### 4.1 Modelo Estrella
+### 4.1 Modelo Estrella Apache-Spark
 
 ![alt text](recursos/Diagrama_Estrella.png "Modelo de Estrella")
 
 ## 5. Realizar la conexión de Mysql a Spark para crear las tablas en *.parquet.
-
-
-# Retail_db, Apache-Spark
-
-Creacion de modelo en estrella utilizando Apache-Spark y MySql.
-
-
