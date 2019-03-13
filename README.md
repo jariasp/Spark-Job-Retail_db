@@ -35,6 +35,7 @@ productsdf.write.mode("overwrite").format("parquet").save("hdfs:///datawh/produc
 ```
 
 ### 1.3 Lectura de los archivos *.parquet 
+
 ```scala
 val parquetdepar = sqlContext.read.parquet("/datawh/department.parquet")
 val parquetcliente = sqlContext.read.parquet("/datawh/customers.parquet")
@@ -45,6 +46,7 @@ val parquetorders = sqlContext.read.parquet("/datawh/orders.parquet")
 ```
 
 ### 1.4 Lectura y registro de tabla temporal a partir de un datframe
+
 ```scala
 parquetdepar.registerTempTable("departamento")
 parquetcliente.registerTempTable("cliente")
