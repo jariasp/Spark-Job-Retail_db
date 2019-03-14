@@ -115,9 +115,9 @@ oi.order_item_id,c.customer_id,p.product_id,ca.category_id,d.department_id, ci.c
 ![alt text](recursos/Tabla_Hechos(Ventas).jpg "Tabla de Hechos")
 
 
-## 9. Se crean las dimensiones
+## 6. Se crean las dimensiones
 
-### 9.1 Dimesión de Tiempo: 
+### 6.1 Dimesión de Tiempo: 
 
 #### Esta se puede realizar de formas utilizando las funcion withcolumn junto con las funciones de tiempo.
 
@@ -149,7 +149,7 @@ var nodoTiempo = dataFrame
 ```
 ![alt text](recursos/Dimensión_Tiempo.jpg "Dimensión del tiempo")
 
-### 9.2 Dimensión de Customers
+### 6.2 Dimensión de Customers
 
 ![alt text](recursos/Dimensión_Cliente.jpg  "Dimensión Customer")
 
@@ -175,7 +175,7 @@ val readData: DataFrame = sqlContext.read.parquet(DATAWAREHOUSE + "customers" + 
       nodoCliente.write.mode("overwrite").format("parquet").save(urlD)
 ```
 
-### 9.3 Dimensión departamento
+### 6.3 Dimensión departamento
 
 ```scala
 def crearNodoDepartamentos(): Unit ={
@@ -191,7 +191,7 @@ nodoDepartamento.write.mode("overwrite").format("parquet").save(urlD)
 ```
 ![alt text](recursos/Dimensión_Departamento.jpg  "Dimensión Product")
 
-### 9.4 Dimensión productos
+### 6.4 Dimensión productos
 ```scala
 def crearNodoProductos(): Unit ={
       var dataFrame: DataFrame = sqlContext.read.parquet(DATAWAREHOUSE+"products"+PARQUET_EXT)
@@ -210,7 +210,7 @@ def crearNodoProductos(): Unit ={
 ```
 ![alt text](recursos/Dimensión_Producto.jpg  "Dimensión Product")
 
-### 9.5 Dimensión Categoria
+### 6.5 Dimensión Categoria
 ```scala
 def crearNodoCategortias(): Unit ={
 var dataFrame: DataFrame = sqlContext.read.parquet(DATAWAREHOUSE+"categories"+PARQUET_EXT)
@@ -226,6 +226,24 @@ nodoCategory.write.mode("overwrite").format("parquet").save(urlD)
 ```
 ![alt text](recursos/Dimensión_Categoria.jpg  "Dimensión Category")
 
+### 6.5 Dimensión Categoria
+```scala
+def crearNodoCiudades(): Unit ={
+val hiveContext = new org.apache.spark.sql.hive.HiveContext(sparkContext)
+var dataFrame: DataFrame = hiveContext.read.parquet(DATAWAREHOUSE+"customers"+PARQUET_EXT)
+
+var nodoCiudad = dataFrame
+.selectExpr(
+"(customer_city) as city_name",
+"(customer_state) as city_state")
+.distinct()
+.withColumn("city_id",row_number().over(Window.orderBy("city_name")))
+//nodoCiudad.show(100)
+var urlD: String = DATAMARK+"cites"+PARQUET_EXT
+nodoCiudad.write.mode("overwrite").format("parquet").save(urlD)
+}
+```
+![alt text](recursos/Dimensión_Ciudad.jpg  "Dimensión Ciudad")
 
 ## 10. Compilación de codigo en IDE para obtener el *.JAR
 
