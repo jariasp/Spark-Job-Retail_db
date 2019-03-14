@@ -1,0 +1,21 @@
+[0m[[0m[0minfo[0m] [0m[0mPackaging /home/juan/IdeaProjects/loadDataWareHouse/target/scala-2.10/loaddatawarehouse_2.10-0.1.jar ...[0m
+[0m[[0m[0mdebug[0m] [0m[0mInput file mappings:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	co/edu/upb[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/juan/IdeaProjects/loadDataWareHouse/target/scala-2.10/classes/co/edu/upb[0m
+[0m[[0m[0mdebug[0m] [0m[0m	co/edu/upb/bigdata/dwh/JobLoadRetailDB$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/juan/IdeaProjects/loadDataWareHouse/target/scala-2.10/classes/co/edu/upb/bigdata/dwh/JobLoadRetailDB$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	co/edu/upb/bigdata/dwh[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/juan/IdeaProjects/loadDataWareHouse/target/scala-2.10/classes/co/edu/upb/bigdata/dwh[0m
+[0m[[0m[0mdebug[0m] [0m[0m	co[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/juan/IdeaProjects/loadDataWareHouse/target/scala-2.10/classes/co[0m
+[0m[[0m[0mdebug[0m] [0m[0m	co/edu/upb/bigdata/dwh/JobLoadRetailDB$$anonfun$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/juan/IdeaProjects/loadDataWareHouse/target/scala-2.10/classes/co/edu/upb/bigdata/dwh/JobLoadRetailDB$$anonfun$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	co/edu/upb/bigdata[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/juan/IdeaProjects/loadDataWareHouse/target/scala-2.10/classes/co/edu/upb/bigdata[0m
+[0m[[0m[0mdebug[0m] [0m[0m	co/edu/upb/bigdata/dwh/JobLoadRetailDB.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/juan/IdeaProjects/loadDataWareHouse/target/scala-2.10/classes/co/edu/upb/bigdata/dwh/JobLoadRetailDB.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	co/edu[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/juan/IdeaProjects/loadDataWareHouse/target/scala-2.10/classes/co/edu[0m
+[0m[[0m[0mdebug[0m] [0m[0m	co/edu/upb/bigdata/dwh/JobLoadRetailDB$$anonfun$cargarTablas$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/juan/IdeaProjects/loadDataWareHouse/target/scala-2.10/classes/co/edu/upb/bigdata/dwh/JobLoadRetailDB$$anonfun$cargarTablas$1.class[0m
+[0m[[0m[0minfo[0m] [0m[0mDone packaging.[0m
