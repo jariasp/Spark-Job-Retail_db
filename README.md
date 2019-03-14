@@ -185,6 +185,23 @@ val dim_orders = sqlContext.sql("select * from parquetcliente")
 val dim_cliente = cliente.withColumn("password",(Seq.fill{Math.abs(Random.nextInt % 100L)}))
 ```
 
+#### Función de la dimensión productos
+```scala
+def crearNodoProductos(): Unit ={
+      var dataFrame: DataFrame = sqlContext.read.parquet(DATAWAREHOUSE+"products"+PARQUET_EXT)
+      var nodoProductos = dataFrame
+        .selectExpr(
+          "product_id",
+          "product_category_id",
+          "product_name",
+          "product_description",
+          "product_price",
+          "product_image")
+      var urlD: String = DATAMARK+"products"+PARQUET_EXT
+      nodoProductos.write.mode("overwrite").format("parquet").save(urlD)
+
+    }
+```
 ## 10. Compilación de codigo en IDE para obtener el *.JAR
 
 
