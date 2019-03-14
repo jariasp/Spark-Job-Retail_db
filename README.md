@@ -17,22 +17,26 @@ prop.put("password", PWD_MYSQL)
 ```scala
 val departmentdf = sqlContext.read.jdbc(url,"departments",pro)
 departmentdf.write.mode("overwrite").format("parquet").save("hdfs:///datawh/department.parquet")
-
+```
+```scala
 val categoriesdf = sqlContext.read.jdbc(url,"categories",pro)
 categoriesdf.write.mode("overwrite").format("parquet").save("hdfs:///datawh/categories.parquet")
-
+```
+```scala
 val customersdf = sqlContext.read.jdbc(url,"customers",pro)
 customersdf.write.mode("overwrite").format("parquet").save("hdfs:///datawh/customers.parquet")
-
+```
+```scala
 val order_itemsdf = sqlContext.read.jdbc(url,"order_items",pro)
 order_itemsdf.write.mode("overwrite").format("parquet").save("hdfs:///datawh/order_items.parquet")
-
+```
+```scala
 val ordersdf = sqlContext.read.jdbc(url,"orders",pro)
 ordersdf.write.mode("overwrite").format("parquet").save("hdfs:///datawh/orders.parquet")
-
+```
+```scala
 val productsdf = sqlContext.read.jdbc(url,"products",pro)
 productsdf.write.mode("overwrite").format("parquet").save("hdfs:///datawh/products.parquet")
-
 ```
 
 ### 1.3 Lectura de los archivos *.parquet 
