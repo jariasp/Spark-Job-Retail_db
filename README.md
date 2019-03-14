@@ -202,6 +202,8 @@ def crearNodoProductos(): Unit ={
 
     }
 ```
+![alt text](recursos/Dimensión_Producto.jpg  "Dimensión Product")
+
 ## 10. Compilación de codigo en IDE para obtener el *.JAR
 
 
