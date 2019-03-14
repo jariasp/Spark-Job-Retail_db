@@ -154,9 +154,10 @@ var nodoTiempo = dataFrame
 ![alt text](recursos/Dimensión_Cliente.jpg  "Dimensión Customer")
 
 #### La dimensión contiene campos calculados de mail (lname@upb.{city}.com) y passwork entre 0 y 100.
-```scala
-val readData: DataFrame = sqlContext.read.parquet(DATAWAREHOUSE + "customers" + PARQUET_EXT)
 
+```scala
+ def crearNodoClientes(): Unit ={
+      val readData: DataFrame = sqlContext.read.parquet(DATAWAREHOUSE + "customers" + PARQUET_EXT)
       def aleatorio = new scala.util.Random()
       val maxAleatorio = 100
       val nextRandomIntUdf = udf(() => aleatorio.nextInt(maxAleatorio))
@@ -170,7 +171,6 @@ val readData: DataFrame = sqlContext.read.parquet(DATAWAREHOUSE + "customers" + 
         "customer_state",
         "customer_zipcode" )
         .withColumn("customer_password", nextRandomIntUdf())
-)
       var urlD: String = DATAMARK+"customers"+PARQUET_EXT
       nodoCliente.write.mode("overwrite").format("parquet").save(urlD)
 ```
