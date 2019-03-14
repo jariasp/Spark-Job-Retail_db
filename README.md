@@ -168,31 +168,22 @@ def crearNodoHechos(): Unit ={
 #### Esta se puede realizar de formas utilizando las funcion withcolumn junto con las funciones de tiempo.
 
 ```scala
-val parquetorders = sqlContext.read.parquet("/datawh/orders.parquet")
-parquetorders.registerTempTable("ordenes")
-val fechas = sqlContext.sql("select distinct order_date from ordenes")
-
-fechas.registerTempTable("fechas")
-
-val tiempo = fechas.withColumn("dia",dayofmonth(col("order_date"))).withColumn("mes",month(col("order_date"))).withColumn("annio",year(col("order_date")))
-
-tiempo.registerTempTable("tiempo")
-
-val tiempo1 = sqlContext.sql("select concat(annio,mes,dia)as skfecha, dia,mes,annio, quarter(order_date) as trimestre, round((quarter(order_date))/2) as semestre from tiempo")
-
-tiempo1.write.parquet("/datawh/dim_tiempo.parquet")
-```
-
-```scala
-var nodoTiempo = dataFrame
-        .selectExpr("order_date")
+def crearNodoTiempo(): Unit ={
+      var dataFrame: DataFrame = sqlContext.read.parquet(DATAWAREHOUSE+"orders"+PARQUET_EXT)
+      def roundUp(d: Double) = math.ceil(d).toInt
+      var nodoTiempo = dataFrame
+        .selectExpr("(order_date) as date")
         .distinct()
-        .withColumn("day",dayofmonth(col("order_date")))
-        .withColumn("month",month(col("order_date")))
-        .withColumn("year",year(col("order_date")))      
-        .withColumn("trimester", quarter(col("order_date")))
-        .withColumn("semester", round(quarter(col("order_date"))/2))
+        .withColumn("day",dayofmonth(col("date")))
+        .withColumn("month",month(col("date")))
+        .withColumn("year",year(col("date")))
+        .withColumn("trimester", quarter(col("date")))
+        .withColumn("semester", round(quarter(col("date"))/2))
+      var urlD: String = DATAMARK+"timer"+PARQUET_EXT
+      nodoTiempo.write.mode("overwrite").format("parquet").save(urlD)
+    }
 ```
+
 ![alt text](recursos/Dimensión_Tiempo.jpg "Dimensión del tiempo")
 
 ### 6.2 Dimensión de Customers
