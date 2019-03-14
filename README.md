@@ -135,6 +135,8 @@ var nodoTiempo = dataFrame
 
 ### 9.4 Dimensión de Customers
 
+![alt text](recursos/Dimensión_Cliente.jpg  "Dimensión Customer")
+
 #### La dimensión contiene campos calculados de mail y passwork.
 
 ##### Mail esta creado lname@upb.{city}.com
