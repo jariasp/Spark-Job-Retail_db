@@ -226,7 +226,7 @@ nodoCategory.write.mode("overwrite").format("parquet").save(urlD)
 ```
 ![alt text](recursos/Dimensión_Categoria.jpg  "Dimensión Category")
 
-### 6.5 Dimensión Categoria
+### 6.5 Dimensión Ciudad
 ```scala
 def crearNodoCiudades(): Unit ={
 val hiveContext = new org.apache.spark.sql.hive.HiveContext(sparkContext)
@@ -242,6 +242,24 @@ var nodoCiudad = dataFrame
 var urlD: String = DATAMARK+"cites"+PARQUET_EXT
 nodoCiudad.write.mode("overwrite").format("parquet").save(urlD)
 }
+```
+![alt text](recursos/Dimensión_Ciudad.jpg  "Dimensión Ciudad")
+
+### 6.5 Dimensión Estado
+
+```scala
+def crearNodoEstados(): Unit ={
+val hiveContext = new org.apache.spark.sql.hive.HiveContext(sparkContext)
+var dataFrame: DataFrame = hiveContext.read.parquet(DATAWAREHOUSE+"orders"+PARQUET_EXT)
+var nodoEstado = dataFrame
+.selectExpr("(order_status) as status_name")
+.distinct()
+.withColumn("status_id", row_number().over(Window.orderBy("status_name")))
+//nodoEstado.show(100) // Solo para entorno desarrollo
+var urlD: String = DATAMARK+"status"+PARQUET_EXT
+nodoEstado.write.mode("overwrite").format("parquet").save(urlD)
+}
+
 ```
 ![alt text](recursos/Dimensión_Ciudad.jpg  "Dimensión Ciudad")
 
