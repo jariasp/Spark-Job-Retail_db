@@ -137,11 +137,27 @@ var nodoTiempo = dataFrame
 
 ![alt text](recursos/Dimensión_Cliente.jpg  "Dimensión Customer")
 
-#### La dimensión contiene campos calculados de mail y passwork.
+#### La dimensión contiene campos calculados de mail (lname@upb.{city}.com) y passwork.
+```scala
+val readData: DataFrame = sqlContext.read.parquet(DATAWAREHOUSE + "customers" + PARQUET_EXT)
 
-##### Mail esta creado lname@upb.{city}.com
-
-##### Passwork es un número aleatorio entre 0 y 100. 
+      def aleatorio = new scala.util.Random()
+      val maxAleatorio = 100
+      val nextRandomIntUdf = udf(() => aleatorio.nextInt(maxAleatorio))
+      val nodoCliente = readData.selectExpr(
+        "customer_id",
+        "customer_fname",
+        "customer_lname",
+        "concat(customer_fname,'.',customer_lname,'@upb.',customer_city,'com') as customer_email",
+        "customer_street",
+        "customer_city",
+        "customer_state",
+        "customer_zipcode" )
+        .withColumn("customer_password", nextRandomIntUdf())
+)
+      var urlD: String = DATAMARK+"customers"+PARQUET_EXT
+      nodoCliente.write.mode("overwrite").format("parquet").save(urlD)
+```
 
 ### 9.3 Dimensiones de department, Customer, category,orders_item, orders y city.
 ```scala
