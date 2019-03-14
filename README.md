@@ -23,29 +23,14 @@ def cargarTablas(): Unit ={
       tablas.foreach(e => transformarMysqlTable_ParquetFile(e, DATAWAREHOUSE))
 
     }
-
-
-
     private def transformarMysqlTable_ParquetFile(tableName :String, urlDfs :String): Unit ={
-
       val prop = new Properties()
-
       prop.put("user", USR_MYSQL)
-
       prop.put("password", PWD_MYSQL)
-
-
-
       var table: String = "retail_db."+tableName
-
       var urlD: String = urlDfs+tableName+PARQUET_EXT
-
-
-
       var dataFrm: DataFrame = sqlContext.read.jdbc(URL_MYSQL, table, prop)
-
       dataFrm.write.mode("overwrite").format("parquet").save(urlD)
-
     }
 
 
