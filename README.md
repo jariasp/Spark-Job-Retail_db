@@ -175,7 +175,7 @@ val readData: DataFrame = sqlContext.read.parquet(DATAWAREHOUSE + "customers" + 
       nodoCliente.write.mode("overwrite").format("parquet").save(urlD)
 ```
 
-### 9.3 Dimensiones de department, Customer, category,orders_item, orders y city.
+### 9.3 Dimensiones de department, category,orders_item, orders y city.
 ```scala
 val dim_departamento = sqlContext.sql("select * from departamento")
 val dim_cliente = sqlContext.sql("select * from parquetcliente")
@@ -184,6 +184,20 @@ val dim_order_item = sqlContext.sql("select * from parquetcliente")
 val dim_orders = sqlContext.sql("select * from parquetcliente")
 val dim_cliente = cliente.withColumn("password",(Seq.fill{Math.abs(Random.nextInt % 100L)}))
 ```
+#### Función de la dimensión departamento
+```scala
+def crearNodoDepartamentos(): Unit ={
+var dataFrame: DataFrame = sqlContext.read.parquet(DATAWAREHOUSE+"departments"+PARQUET_EXT)
+var nodoDepartamento = dataFrame
+.selectExpr(
+"department_id",
+"department_name")
+//nodoDepartamento.show(100)
+var urlD: String = DATAMARK+"departments"+PARQUET_EXT
+nodoDepartamento.write.mode("overwrite").format("parquet").save(urlD)
+}
+```
+![alt text](recursos/Dimensión_Departamento.jpg  "Dimensión Product")
 
 #### Función de la dimensión productos
 ```scala
