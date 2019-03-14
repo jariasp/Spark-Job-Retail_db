@@ -137,7 +137,7 @@ var nodoTiempo = dataFrame
 
 ![alt text](recursos/Dimensión_Cliente.jpg  "Dimensión Customer")
 
-#### La dimensión contiene campos calculados de mail (lname@upb.{city}.com) y passwork.
+#### La dimensión contiene campos calculados de mail (lname@upb.{city}.com) y passwork entre 0 y 100.
 ```scala
 val readData: DataFrame = sqlContext.read.parquet(DATAWAREHOUSE + "customers" + PARQUET_EXT)
 
