@@ -14,31 +14,6 @@ prop.put("password", PWD_MYSQL)
 
 ```
 ### 1.2 Lectura de tablas de MySql desde Apache-Spark y escritura de archivos parquet en Hadoop
-```scala
-val departmentdf = sqlContext.read.jdbc(url,"departments",pro)
-departmentdf.write.mode("overwrite").format("parquet").save("hdfs:///datawh/department.parquet")
-```
-```scala
-val categoriesdf = sqlContext.read.jdbc(url,"categories",pro)
-categoriesdf.write.mode("overwrite").format("parquet").save("hdfs:///datawh/categories.parquet")
-```
-```scala
-val customersdf = sqlContext.read.jdbc(url,"customers",pro)
-customersdf.write.mode("overwrite").format("parquet").save("hdfs:///datawh/customers.parquet")
-```
-```scala
-val order_itemsdf = sqlContext.read.jdbc(url,"order_items",pro)
-order_itemsdf.write.mode("overwrite").format("parquet").save("hdfs:///datawh/order_items.parquet")
-```
-```scala
-val ordersdf = sqlContext.read.jdbc(url,"orders",pro)
-ordersdf.write.mode("overwrite").format("parquet").save("hdfs:///datawh/orders.parquet")
-```
-```scala
-val productsdf = sqlContext.read.jdbc(url,"products",pro)
-productsdf.write.mode("overwrite").format("parquet").save("hdfs:///datawh/products.parquet")
-```
-#### Otra forma es crear una función:
 
 ```scala
 def cargarTablas(): Unit ={
@@ -48,6 +23,32 @@ def cargarTablas(): Unit ={
       tablas.foreach(e => transformarMysqlTable_ParquetFile(e, DATAWAREHOUSE))
 
     }
+
+
+
+    private def transformarMysqlTable_ParquetFile(tableName :String, urlDfs :String): Unit ={
+
+      val prop = new Properties()
+
+      prop.put("user", USR_MYSQL)
+
+      prop.put("password", PWD_MYSQL)
+
+
+
+      var table: String = "retail_db."+tableName
+
+      var urlD: String = urlDfs+tableName+PARQUET_EXT
+
+
+
+      var dataFrm: DataFrame = sqlContext.read.jdbc(URL_MYSQL, table, prop)
+
+      dataFrm.write.mode("overwrite").format("parquet").save(urlD)
+
+    }
+
+
 ```
 
 ### 1.3 Lectura de los archivos *.parquet 
