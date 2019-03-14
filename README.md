@@ -38,6 +38,17 @@ ordersdf.write.mode("overwrite").format("parquet").save("hdfs:///datawh/orders.p
 val productsdf = sqlContext.read.jdbc(url,"products",pro)
 productsdf.write.mode("overwrite").format("parquet").save("hdfs:///datawh/products.parquet")
 ```
+#### Otra forma es crear una función:
+
+```scala
+def cargarTablas(): Unit ={
+
+      var tablas = Array("departments", "categories", "customers", "order_items", "orders", "products")
+
+      tablas.foreach(e => transformarMysqlTable_ParquetFile(e, DATAWAREHOUSE))
+
+    }
+```
 
 ### 1.3 Lectura de los archivos *.parquet 
 
