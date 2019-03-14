@@ -279,5 +279,7 @@ nodoEstado.write.mode("overwrite").format("parquet").save(urlD)
 ### En el mercado se encuentran varios entornos de desarrollo integrado (IDE) utilizado en la programación de computadoras, y es el IDE de Java más utilizado. ontiene un espacio de trabajo base y un sistema de plug-in extensible para personalizar el entorno. Existen principalmente 2 herramientas eclipse ide y intellij ide los cuales permiten generar compilación.
 
 
-
+![alt text](recursos/Intellij.jpg  "Intellij")
+![alt text](recursos/eclipse.jpg  "Eclipse")
+![alt text](Pantalla.jpg  "Pantalla")
 
