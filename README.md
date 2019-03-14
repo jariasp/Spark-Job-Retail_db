@@ -62,18 +62,6 @@ val parquetorder_items = sqlContext.read.parquet("/datawh/order_items.parquet")
 val parquetorders = sqlContext.read.parquet("/datawh/orders.parquet")
 ```
 
-### 1.4 Lectura y registro de tabla temporal a partir de un dataframe
-
-```scala
-parquetdepar.registerTempTable("departamento")
-parquetcliente.registerTempTable("cliente")
-parquetproducto.registerTempTable("producto")
-parquetcategoria.registerTempTable("categoria")
-parquetorder_items.registerTempTable("ordenItems")
-parquetorders.registerTempTable("ordenes")
-
-```
-
 ## 2. Modelo Entidad Relación de la base de datos Mysql
 
 ![alt text](recursos/ModeloER.png "Modelo-ER Retail_db")
