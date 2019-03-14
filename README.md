@@ -281,5 +281,5 @@ nodoEstado.write.mode("overwrite").format("parquet").save(urlD)
 
 ![alt text](recursos/intellij.jpg  "Intellij")
 ![alt text](recursos/eclipse.png  "Eclipse")
-![alt text](pantalla.jpg  "Pantalla")
+![alt text](recursos/pantalla.jpg  "Pantalla")
 
