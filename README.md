@@ -204,6 +204,24 @@ def crearNodoProductos(): Unit ={
 ```
 ![alt text](recursos/Dimensión_Producto.jpg  "Dimensión Product")
 
+
+#### Función de la dimensión Categoria
+```scala
+def crearNodoCategortias(): Unit ={
+var dataFrame: DataFrame = sqlContext.read.parquet(DATAWAREHOUSE+"categories"+PARQUET_EXT)
+var nodoCategory = dataFrame
+.selectExpr(
+"category_id",
+"category_department_id",
+"category_name")
+//nodoCategory.show(100)
+var urlD: String = DATAMARK+"categories"+PARQUET_EXT
+nodoCategory.write.mode("overwrite").format("parquet").save(urlD)
+}
+```
+![alt text](recursos/Dimensión_Categoria.jpg  "Dimensión Category")
+
+
 ## 10. Compilación de codigo en IDE para obtener el *.JAR
 
 
