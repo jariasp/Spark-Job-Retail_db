@@ -102,14 +102,60 @@ Creacion de modelo en estrella utilizando Apache-Spark y MySql.
 ## 5. Creción del tabla de Hechos
 
 ```scala
-val dim_cliente = sqlContext.sql("select 
-oi.order_item_id,c.customer_id,p.product_id,ca.category_id,d.department_id, city_id, o.order_date as fecha_Carga,sum(oi.order_item_subtotal) as Val_Ventas,sum(order_item_quantity) as Cant_Prod
-from   order_items oi, orders o, customers c, products p, categories ca, departments d, city ci
- where o.order_id = oi.order_item_order_id and  o.order_customer_id = c.customer_id and
- oi.order_item_product_id = p.product_id and  ca.category_id = p.product_category_id and
- ca.category_department_id = d.department_id
-Group by 
-oi.order_item_id,c.customer_id,p.product_id,ca.category_id,d.department_id, ci.city_id")
+def crearNodoHechos(): Unit ={
+
+      var departments: DataFrame = sqlContext.read.parquet(DATAWAREHOUSE+"departments"+PARQUET_EXT)
+      departments.registerTempTable("departments")
+      var categories: DataFrame = sqlContext.read.parquet(DATAWAREHOUSE+"categories"+PARQUET_EXT)
+      categories.registerTempTable("categories")
+      var customers: DataFrame = sqlContext.read.parquet(DATAWAREHOUSE+"customers"+PARQUET_EXT)
+      customers.registerTempTable("customers")
+      var order_items: DataFrame = sqlContext.read.parquet(DATAWAREHOUSE+"order_items"+PARQUET_EXT)
+      order_items.registerTempTable("order_items")
+      var orders: DataFrame = sqlContext.read.parquet(DATAWAREHOUSE+"orders"+PARQUET_EXT)
+      orders.registerTempTable("orders")
+      var products: DataFrame = sqlContext.read.parquet(DATAWAREHOUSE+"products"+PARQUET_EXT)
+      products.registerTempTable("products")
+      var cites: DataFrame = sqlContext.read.parquet(DATAMARK+"cites"+PARQUET_EXT)
+      cites.registerTempTable("cites")
+      val nodoHechos = sqlContext.sql(
+        "select "+
+          "(o.order_id) as order_id, "+
+          "(c.customer_id) as customer_id, "+
+          "(ci.city_id) as city_id, "+
+          "(p.product_id) as product_id, "+
+          "(ca.category_id) as category_id, "+
+          "(d.department_id) as department_id, "+
+          "(o.order_date) as order_date, "+
+          "sum(oi.order_item_subtotal) as Val_Ventas, "+
+          "sum(oi.order_item_quantity) as Cant_Prod "+
+          "from "+
+          "order_items oi, "+
+          "orders o, "+
+          "customers c, "+
+          "products p, "+
+          "categories ca, "+
+          "departments d, "+
+          "cites ci "+
+          "where o.order_id = oi.order_item_order_id and "+
+          "o.order_customer_id = c.customer_id and "+
+          "c.customer_city = ci.city_name and "+
+          "c.customer_state = ci.city_state and "+
+          "oi.order_item_product_id = p.product_id and "+
+          "ca.category_id = p.product_category_id and "+
+          "ca.category_department_id = d.department_id "+
+          "Group by "+
+          "o.order_id, "+
+          "c.customer_id, "+
+          "ci.city_id, "+
+          "p.product_id, "+
+          "ca.category_id, "+
+          "d.department_id, "+
+          "o.order_date" )
+        .withColumn("load_date", current_date())
+      var urlD: String = DATAMARK+"hechos"+PARQUET_EXT
+      nodoHechos.write.mode("overwrite").format("parquet").save(urlD)
+    }
 ```
 
 ![alt text](recursos/Tabla_Hechos(Ventas).jpg "Tabla de Hechos")
