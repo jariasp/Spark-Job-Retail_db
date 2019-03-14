@@ -9,8 +9,9 @@ Apartir de la base de datos retail_db contenida en mysql la cual accesamos por m
 val sqlContext = new org.apache.spark.sql.SQLContext(sc)
 var url="jdbc:mysql://quickstart:3306/retail_db"
 val pro= new java.util.Properties
-pro.setProperty("user","root")
-pro.setProperty("password","cloudera")
+prop.put("user", USR_MYSQL)
+prop.put("password", PWD_MYSQL)
+
 ```
 ### 1.2 Lectura de tablas de MySql desde Apache-Spark y escritura de archivos parquet en Hadoop
 ```scala
