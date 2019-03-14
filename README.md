@@ -149,7 +149,7 @@ var nodoTiempo = dataFrame
 ```
 ![alt text](recursos/Dimensión_Tiempo.jpg "Dimensión del tiempo")
 
-### 9.4 Dimensión de Customers
+### 9.2 Dimensión de Customers
 
 ![alt text](recursos/Dimensión_Cliente.jpg  "Dimensión Customer")
 
@@ -175,16 +175,8 @@ val readData: DataFrame = sqlContext.read.parquet(DATAWAREHOUSE + "customers" + 
       nodoCliente.write.mode("overwrite").format("parquet").save(urlD)
 ```
 
-### 9.3 Dimensiones de department, category,orders_item, orders y city.
-```scala
-val dim_departamento = sqlContext.sql("select * from departamento")
-val dim_cliente = sqlContext.sql("select * from parquetcliente")
-val dim_categoria = sqlContext.sql("select * from parquetcliente")
-val dim_order_item = sqlContext.sql("select * from parquetcliente")
-val dim_orders = sqlContext.sql("select * from parquetcliente")
-val dim_cliente = cliente.withColumn("password",(Seq.fill{Math.abs(Random.nextInt % 100L)}))
-```
-#### Función de la dimensión departamento
+### 9.3 Dimensión departamento
+
 ```scala
 def crearNodoDepartamentos(): Unit ={
 var dataFrame: DataFrame = sqlContext.read.parquet(DATAWAREHOUSE+"departments"+PARQUET_EXT)
@@ -199,7 +191,7 @@ nodoDepartamento.write.mode("overwrite").format("parquet").save(urlD)
 ```
 ![alt text](recursos/Dimensión_Departamento.jpg  "Dimensión Product")
 
-#### Función de la dimensión productos
+### 9.4 Dimensión productos
 ```scala
 def crearNodoProductos(): Unit ={
       var dataFrame: DataFrame = sqlContext.read.parquet(DATAWAREHOUSE+"products"+PARQUET_EXT)
@@ -218,8 +210,7 @@ def crearNodoProductos(): Unit ={
 ```
 ![alt text](recursos/Dimensión_Producto.jpg  "Dimensión Product")
 
-
-#### Función de la dimensión Categoria
+### 9.5 Dimensión Categoria
 ```scala
 def crearNodoCategortias(): Unit ={
 var dataFrame: DataFrame = sqlContext.read.parquet(DATAWAREHOUSE+"categories"+PARQUET_EXT)
