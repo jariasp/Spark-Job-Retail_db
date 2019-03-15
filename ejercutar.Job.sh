@@ -1,3 +1,0 @@
-spark-submit loadDataWareHouse.jar
-
-
