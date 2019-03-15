@@ -256,7 +256,7 @@ nodoCiudad.write.mode("overwrite").format("parquet").save(urlD)
 ```
 ![alt text](recursos/Dimensión_Ciudad.jpg  "Dimensión Ciudad")
 
-### 6.5 Dimensión Estado
+### 6.6 Dimensión Estado
 
 ```scala
 def crearNodoEstados(): Unit ={
@@ -274,7 +274,7 @@ nodoEstado.write.mode("overwrite").format("parquet").save(urlD)
 ```
 ![alt text](recursos/Dimensión_Ciudad.jpg  "Dimensión Ciudad")
 
-## 10. Entorno de desarrollo
+## 7. Entorno de desarrollo
 
 En el mercado se encuentran varios entornos de desarrollo integrado (IDE) utilizado en la programación de computadoras, y es el IDE de Java más utilizado. ontiene un espacio de trabajo base y un sistema de plug-in extensible para personalizar el entorno. Existen principalmente 2 herramientas eclipse ide y intellij ide los cuales permiten generar compilación.
 
@@ -283,7 +283,7 @@ En el mercado se encuentran varios entornos de desarrollo integrado (IDE) utiliz
 ![alt text](recursos/eclipse.png  "Eclipse")
 ![alt text](recursos/pantalla.jpg  "Pantalla")
 
-## 11. Creación de proyectos con *.sbt
+## 8. Creación de proyectos con *.sbt
 
 Estrutura de un proyecto en SBT
 
@@ -309,6 +309,14 @@ libraryDependencies += "org.apache.spark" %% "spark-hive" % "1.6.3" % "provided"
 
 Creación del paquete
 
-```scala
+```
 sbt package
+```
+
+## 9 Ejecución del Job en apache spark
+
+Para su ejecución se utiliza el comando 
+
+```
+spark-submit <ubicación archivo> 
 ```
