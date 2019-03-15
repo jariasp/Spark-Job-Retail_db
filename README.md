@@ -284,3 +284,16 @@ En el mercado se encuentran varios entornos de desarrollo integrado (IDE) utiliz
 ![alt text](recursos/pantalla.jpg  "Pantalla")
 
 ## 11. Creación de proyectos con *.sbt
+
+Estrutura de un proyecto en SBT
+
+```
+project/
+├── build.properties
+├── Build.scala
+├── plugins.sbt
+```
+
+Archivo de Configuración
+
+
