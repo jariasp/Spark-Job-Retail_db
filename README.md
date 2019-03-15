@@ -320,3 +320,6 @@ Para su ejecución se utiliza el comando
 ```
 spark-submit <ubicación archivo> 
 ```
+
+Juan Carlos Arias
+Diana Carolina Sánchez
