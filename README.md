@@ -321,5 +321,9 @@ Para su ejecución se utiliza el comando
 spark-submit <ubicación archivo> 
 ```
 
+```
+Propietarios:
 Juan Carlos Arias
 Diana Carolina Sánchez
+
+```
