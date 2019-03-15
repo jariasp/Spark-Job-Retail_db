@@ -309,4 +309,6 @@ libraryDependencies += "org.apache.spark" %% "spark-hive" % "1.6.3" % "provided"
 
 Creación del paquete
 
-
+```scala
+sbt package
+```
