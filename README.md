@@ -272,7 +272,7 @@ nodoEstado.write.mode("overwrite").format("parquet").save(urlD)
 }
 
 ```
-![alt text](recursos/Dimensión_Ciudad.jpg  "Dimensión Ciudad")
+![alt text](recursos/Dimensión_Estado.jpg  "Dimensión Ciudad")
 
 ## 7. Entorno de desarrollo
 
